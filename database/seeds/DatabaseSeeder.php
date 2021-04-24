@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         echo PHP_EOL , 'cleaning old data....', PHP_EOL;
 
-        DB::statement("SET foreign_key_checks=0");
+        // DB::statement("SET foreign_key_checks=0");
 
         User::truncate();
         Role::truncate();
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users_permissions')->truncate();
         DB::table('notifications')->truncate();
 
-        DB::statement("SET foreign_key_checks=1");
+        // DB::statement("SET foreign_key_checks=1");
 
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
