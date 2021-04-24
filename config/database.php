@@ -1,5 +1,5 @@
 <?php
-
+$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
 return [
 
     /*
@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,15 +57,15 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => array_key_exists('host',$DATABASE_URL)?$DATABASE_URL['host']:env('DB_HOST', '127.0.0.1'),
+            'port' => array_key_exists('port',$DATABASE_URL)?$DATABASE_URL['port']:env('DB_PORT', '5432'),
+            'database' => array_key_exists('path',$DATABASE_URL)?ltrim($DATABASE_URL['path'], '/'):env('DB_DATABASE', 'forge'),
+            'username' => array_key_exists('user',$DATABASE_URL)?$DATABASE_URL['user']:env('DB_USERNAME', 'forge'),
+            'password' => array_key_exists('pass',$DATABASE_URL)?$DATABASE_URL['pass']:env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
-            'sslmode' => 'prefer',
+            'sslmode' => 'require',
         ],
 
         'sqlsrv' => [
