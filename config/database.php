@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,11 +42,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => array_key_exists('host',$DATABASE_URL)?$DATABASE_URL['host']:env('DB_HOST', '127.0.0.1'),
+            'port' => array_key_exists('port',$DATABASE_URL)?$DATABASE_URL['port']:env('DB_PORT', '5432'),
+            'database' => array_key_exists('path',$DATABASE_URL)?ltrim($DATABASE_URL['path'], '/'):env('DB_DATABASE', 'forge'),
+            'username' => array_key_exists('user',$DATABASE_URL)?$DATABASE_URL['user']:env('DB_USERNAME', 'forge'),
+            'password' => array_key_exists('pass',$DATABASE_URL)?$DATABASE_URL['pass']:env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
