@@ -6,16 +6,17 @@
         "frontend-development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.mixfile=webpack.frontend.mix.js",
         "frontend-watch": "npm run frontend-development -- --watch",
         "frontend-prod": "npm run frontend-production",
-        "frontend-production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.mixfile=webpack.frontend.mix.js",
+        "frontend-production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.mixfile=webpack.frontend.mix.js",
         "prebackend-dev": "rm -rf public/css public/js public/fonts public/images",
         "backend-dev": "npm run backend-development",
         "backend-development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.mixfile=webpack.backend.mix.js",
         "backend-watch": "npm run backend-development -- --watch",
         "backend-prod": "npm run backend-production",
-        "backend-production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.mixfile=webpack.backend.mix.js"
+        "backend-production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.mixfile=webpack.backend.mix.js"
     },
     "devDependencies": {
         "axios": "^0.19.0",
+        "cross-env": "^7.0",
         "laravel-mix": "^5.0.1",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
